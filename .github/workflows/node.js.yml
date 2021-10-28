@@ -49,7 +49,7 @@ jobs:
         with:
           host: ${{ secrets.HOST }}
           username: ${{ secrets.TX_HOST_USERNAME }}
-          key: ${{ secrets.TX_HOST_PASSWORD }}
+          password: ${{ secrets.TX_HOST_PASSWORD }}
           script: |
             docker stop $(docker ps --filter ancestor=${{ secrets.REGISTRY }} -q)
             docker rm -f $(docker ps -a --filter ancestor=${{ secrets.REGISTRY }}:latest -q)
