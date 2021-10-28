@@ -26,12 +26,19 @@ jobs:
       - run: npm ci
       - run: npm run build --if-present
 
-      - name: Login to tencent
-        uses: docker/login-action@v1
+      - name: Build Docker Image
+        id: buildAndPushImage
+        uses: risfeng/docker-image-build-push-action@v1.0
         with:
-          registry: ccr.ccs.tencentyun.com
-          username: ${{ secrets.TX_ACCESS_KEY_ID }}
+          registry_url: 'registry.us-east-1.aliyuncs.com'
+          namespaces: 'ibule'
+          repository_name: 'ccr.ccs.tencentyun.com'
+          user_name: ${{ secrets.TX_ACCESS_KEY_ID }}
           password: ${{ secrets.TX_SECRET_ACCESS_KEY }}
+          image_version: 'v1.0'
+          docker_file: '.'
+      - name: Get pre step result output image_pull_url
+        run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
       # # 打包镜像推送到阿里云容器镜像服务
       # - name: Build the Docker image
       #   run: |
