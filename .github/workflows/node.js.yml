@@ -30,9 +30,9 @@ jobs:
         id: buildAndPushImage
         uses: risfeng/docker-image-build-push-action@v1.0
         with:
-          registry_url: 'registry.us-east-1.aliyuncs.com'
+          registry_url: 'ccr.ccs.tencentyun.com'
           namespaces: 'ibule'
-          repository_name: 'ccr.ccs.tencentyun.com'
+          repository_name: 'vue3'
           user_name: ${{ secrets.TX_ACCESS_KEY_ID }}
           password: ${{ secrets.TX_SECRET_ACCESS_KEY }}
           image_version: 'v1.0'
