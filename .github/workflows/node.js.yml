@@ -25,3 +25,18 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: npm run build --if-present
+
+      # 打包镜像推送到阿里云容器镜像服务
+      - name: Build the Docker image
+        run: |
+        sudo docker login --username=100014644489  ccr.ccs.tencentyun.com
+        docker build -t vue3:latest .
+        sudo docker tag [ImageId] ccr.ccs.tencentyun.com/ibule/vue3:latest
+        sudo docker push ccr.ccs.tencentyun.com/ibule/vue3:latest
+      # - name: ssh docker login # 使用appleboy/ssh-action@master登录服务器执行拉取镜像脚本，服务器ip、用户名、密码配置方式同容器镜像服务配置方式一样
+      #   uses: appleboy/ssh-action@master
+      #   with:
+      #     host: ${{ secrets.SSH_HOST }} 
+      #     username: ${{ secrets.SSH_USERNAME }}
+      #     password: ${{ secrets.SSH_PASSWORD }}
+      #     script: cd ~ && sh bilibili-vue-deploy.sh ${{ secrets.DOCKER_USERNAME }} ${{ secrets.DOCKER_PASSWORD }}   
