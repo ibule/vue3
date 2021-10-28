@@ -1,7 +1,5 @@
 name: node # Actions名称
 on:[push]
-# 只有master分支发生push事件时，才会触发workflow
-branches: [ main ]
 jobs:
 
 # 这里我使用的是yarn，想用npm的同学将yarn命令修改为npm命令即可
