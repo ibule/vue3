@@ -1,6 +1,5 @@
 name: node # Actions名称
 on:[push]
-# 这里我使用的是yarn，想用npm的同学将yarn命令修改为npm命令即可
 jobs:
   build:
     runs-on: ubuntu-latest
