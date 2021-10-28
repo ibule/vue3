@@ -5,8 +5,7 @@ name: deploy
 
 on:
   push:
-    tags:
-      - 'v*'
+    branches: [main]
 
 jobs:
   build:
@@ -30,7 +29,9 @@ jobs:
       - name: Get version
         id: version
         run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
-
+      -
+        name: Checkout
+        uses: actions/checkout@v2
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
