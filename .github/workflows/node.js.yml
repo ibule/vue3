@@ -35,7 +35,7 @@ jobs:
           repository_name: 'vue3'
           user_name: ${{ secrets.TX_ACCESS_KEY_ID }}
           password: ${{ secrets.TX_SECRET_ACCESS_KEY }}
-          image_version: 'v1.0'
+          image_version: 'latest'
           docker_file: '.'
       - name: Get pre step result output image_pull_url
         run: echo "The time was ${{ steps.buildAndPushImage.outputs.image_pull_url }}"
