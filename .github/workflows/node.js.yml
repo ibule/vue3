@@ -51,7 +51,7 @@ jobs:
           username: ${{ secrets.TX_HOST_USERNAME }}
           password: ${{ secrets.TX_HOST_PASSWORD }}
           script: |
-            docker stop $(docker ps --filter ancestor=${{ secrets.REGISTRY }} -q) 2>&1
-            docker rm -f $(docker ps -a --filter ancestor=${{ secrets.REGISTRY }} -q) 2>&1
+            docker stop ${{ secrets.REGISTRY }} 2>&1
+            docker rm -f ${{ secrets.REGISTRY }} 2>&1
             docker pull ccr.ccs.tencentyun.com/ibule/${{ secrets.REGISTRY }}:latest
             docker run --name ${{ secrets.REGISTRY }} -d -p 8080:8080 ccr.ccs.tencentyun.com/ibule/${{ secrets.REGISTRY }}:latest
