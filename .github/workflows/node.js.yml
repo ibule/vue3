@@ -49,7 +49,7 @@ jobs:
         with:
           host: ${{ secrets.TX_HOST }}
           username: ${{ secrets.TX_HOST_USERNAME }}
-          password: ${{ secrets.TX_HOST_PASSWORD }}
+          key: ${{ secrets.TX_HOST_KEY }}
           script: |
             docker stop ${{ secrets.REGISTRY }} 2>&1
             docker rm -f ${{ secrets.REGISTRY }} 2>&1
