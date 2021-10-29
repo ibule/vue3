@@ -64,7 +64,7 @@ jobs:
         with:
           host: ${{ secrets.TX_HOST }}
           username: ${{ secrets.TX_HOST_USERNAME }}
-          key: ${{ secrets.TX_HOST_PASSWORD }}
+          password: ${{ secrets.TX_HOST_PASSWORD }}
           script: |
             sh /root/vue3-deploy.sh           
     
