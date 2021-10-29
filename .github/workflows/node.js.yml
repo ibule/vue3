@@ -54,4 +54,4 @@ jobs:
             docker ps --filter ancestor=${{ secrets.REGISTRY }} -q || docker stop $(docker ps --filter ancestor=${{ secrets.REGISTRY }} -q)
             docker ps -a --filter ancestor=${{ secrets.REGISTRY }} -q || docker rm -f $(docker ps -a --filter ancestor=${{ secrets.REGISTRY }} -q)
             docker pull ccr.ccs.tencentyun.com/ibule/${{ secrets.REGISTRY }}:latest
-            docker run -n ${{ secrets.REGISTRY }} -d -p 8080:8080 ccr.ccs.tencentyun.com/ibule/${{ secrets.REGISTRY }}:latest
+            docker run --name ${{ secrets.REGISTRY }} -d -p 8080:8080 ccr.ccs.tencentyun.com/ibule/${{ secrets.REGISTRY }}:latest
