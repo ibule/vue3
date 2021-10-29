@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Config
+clusters:
+- name: "caas-k8s-uat"
+  cluster:
+    server: "https://k8spro.crcloud.com/k8s/clusters/c-kq9xn"
+
+users:
+- name: "caas-k8s-uat"
+  user:
+    token: "kubeconfig-u-r4lgx:22dnn8qhqzh5tb6qvdj9j99fc56jkfxxdkd9qggqg5ldhmrqnwwccn"
+
+contexts:
+- name: "caas-k8s-uat"
+  context:
+    user: "caas-k8s-uat"
+    cluster: "caas-k8s-uat"
+
+current-context: "caas-k8s-uat"
+

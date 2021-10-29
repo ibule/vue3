@@ -1,0 +1,15 @@
+DEV_IMG="ccr.ccs.tencentyun.com/ibule/vue3:latest"
+DEPLOY_HOST=root@106.52.34.113
+
+build: 
+	npm i
+	npm run build
+docker:
+	docker build -f Dockerfile -t ${DEV_IMG} .
+	docker push ${DEV_IMG}
+
+deploy:
+	@echo "deploy... ${DEPLOY_HOST}\n"
+	ssh ${DEPLOY_HOST} "cd /root && sh vue3-deploy.sh"
+
+all: build docker deploy
