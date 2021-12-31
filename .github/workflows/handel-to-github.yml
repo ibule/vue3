@@ -39,6 +39,7 @@ jobs:
           VERSION=$( date +%Y.%m.%d.%H.%M )
           docker login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
           docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
+          docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           echo 推送镜像:${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
