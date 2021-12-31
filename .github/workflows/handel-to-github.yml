@@ -7,7 +7,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
-  VERSION: $(shell date +%Y.%m.%d.%H.%M )
+  VERSION: $( date +%Y.%m.%d.%H.%M )
 jobs:
   build:
     runs-on: ubuntu-latest
