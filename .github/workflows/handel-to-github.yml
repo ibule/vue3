@@ -7,6 +7,7 @@ on:
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
+  VERSION: $(shell date +%Y.%m.%d.%H.%M )
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -36,13 +37,13 @@ jobs:
       # 手动推送到镜像仓库
       - name: package docker
         run: |
-          VERSION=$(date +%s)
+          
           docker login ghcr.io --username ${{ github.actor }} --password ${{ secrets.GITHUB_TOKEN }}
-          docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
+          docker build . --file Dockerfile --tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${env.VERSION}
       - name: push docker
         run: |
-          echo 推送镜像:${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
+          echo 推送镜像:${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${env.VERSION}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${env.VERSION}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
         env:
           CI: true
