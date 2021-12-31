@@ -42,3 +42,5 @@ jobs:
           echo 推送镜像:${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${VERSION}
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+        env:
+          CI: true          
