@@ -4,8 +4,9 @@ name: Build Docker Image
 # push tag 时触发执行
 on:
   push:
-    tags:
-      - v*
+    branches: [main]
+    # tags:
+    #   - v*
 
 # 定义环境变量, 后面会使用
 # 定义 APP_NAME 用于 docker build-args
@@ -32,7 +33,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
-      - run: npm run build 
+      - run: npm run build --if-present
 
       # 设置 QEMU, 后面 docker buildx 依赖此.
       - name: Set up QEMU
@@ -57,6 +58,7 @@ jobs:
         id: docker_build
         uses: docker/build-push-action@v2
         with:
+          context: '.'
           # 是否 docker push
           push: true
           # 生成多平台镜像, see https://github.com/docker-library/bashbrew/blob/v0.1.1/architecture/oci-platform.go
